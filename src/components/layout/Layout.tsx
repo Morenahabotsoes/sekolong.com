@@ -9,20 +9,14 @@ export function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-[#F5F7FB] text-slate-900">
       <Navbar onMenuClick={() => setSidebarOpen(true)} />
 
-      <div className="flex">
-        {user && (
-          <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-        )}
+      {user && <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />}
 
-        <main className="flex-1">
-          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <Outlet />
-          </div>
-        </main>
-      </div>
+      <main className="mx-auto max-w-[1600px] px-4 py-6 sm:px-6 lg:px-8">
+        <Outlet />
+      </main>
     </div>
   )
 }
