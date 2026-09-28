@@ -1,27 +1,32 @@
 import { Link } from 'react-router-dom'
 import { Menu } from 'lucide-react'
-import SekolongLogo from '@/components/logo/SekolongLogo'
+import { useAuth } from '@/contexts/AuthContext'
+import { SekolongLogo } from '@/components/logo/SekolongLogo'
 
 interface NavbarProps {
   onMenuClick?: () => void
 }
 
 export function Navbar({ onMenuClick }: NavbarProps) {
+  const { user } = useAuth()
+
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200 bg-[#F7FAFF]/95 backdrop-blur-md">
-      <div className="mx-auto flex h-[80px] max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-center">
-          <SekolongLogo className="scale-[0.9] sm:scale-100" />
+    <header className="sticky top-0 z-40 border-b border-slate-800 bg-[#02070d] shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Link to="/" className="flex items-center" aria-label="Sekolong home">
+          <SekolongLogo className="max-w-[320px]" />
         </Link>
 
-        <button
-          type="button"
-          onClick={onMenuClick}
-          aria-label="Open user dashboard"
-          className="flex h-12 w-12 items-center justify-center rounded-full border border-[#0E2F9A]/15 bg-white text-[#0E2F9A] shadow-sm transition hover:bg-[#EAF8FF] hover:text-[#0E2F9A]"
-        >
-          <Menu className="h-7 w-7" />
-        </button>
+        {user && (
+          <button
+            onClick={onMenuClick}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/70"
+            aria-label="Open dashboard menu"
+            title="Open dashboard menu"
+          >
+            <Menu className="h-5 w-5" />
+          </button>
+        )}
       </div>
     </header>
   )
