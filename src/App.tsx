@@ -6,6 +6,9 @@ import { Login } from '@/pages/Login'
 import { Register } from '@/pages/Register'
 import { Dashboard } from '@/pages/Dashboard'
 import { Courses } from '@/pages/Courses'
+import { Lesson } from '@/pages/Lesson'
+import { Mosuoe } from '@/pages/Mosuoe'
+import { Curriculum } from '@/pages/Curriculum'
 import { Placeholder } from '@/pages/Placeholder'
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -53,6 +56,30 @@ function AppRoutes() {
           }
         />
         <Route
+          path="/courses/:courseId"
+          element={
+            <ProtectedRoute>
+              <Lesson />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/lesson/:lessonId"
+          element={
+            <ProtectedRoute>
+              <Lesson />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/mosuoe"
+          element={
+            <ProtectedRoute>
+              <Mosuoe />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/my-learning"
           element={
             <ProtectedRoute>
@@ -72,7 +99,7 @@ function AppRoutes() {
           path="/curriculum"
           element={
             <ProtectedRoute>
-              <Placeholder title="Curriculum Management" description="Upload and manage syllabuses and curriculum structures." />
+              <Curriculum />
             </ProtectedRoute>
           }
         />
